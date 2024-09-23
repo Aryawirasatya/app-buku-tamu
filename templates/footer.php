@@ -61,4 +61,14 @@
 
 </body>
 
+<script>
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            });
+        }, 4000);
+    });
+</script>
+
+
 </html>
