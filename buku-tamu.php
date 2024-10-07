@@ -125,7 +125,7 @@ echo $kodeTamuBaru;
 
       <div class="modal-body">
       <form method="post" action="">
-        <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>"> 
+        <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamuBaru ?>"> 
         <div class="form-group row">
             <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label> 
             <div class="col-sm-8">
@@ -164,10 +164,6 @@ echo $kodeTamuBaru;
       </div>
 
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
     </div>
   </div>
 </div>
@@ -178,4 +174,3 @@ include_once('templates/footer.php');
 ?>
 
 
-<!-- alhamdulilah -->
