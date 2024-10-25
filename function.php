@@ -69,6 +69,26 @@ function hapus_tamu($id) {
     return mysqli_affected_rows($koneksi);
 }
 
+
+function tambah_user($data){
+    global $koneksi;
+
+    $kode       = htmlspecialchars($data["id_user"]);
+    $username   = htmlspecialchars($data["username"]);
+    $password   = htmlspecialchars($data["password"]);
+    $user_role  = htmlspecialchars($data["user_role"]);
+
+    // Enkripsi password dengan password_hash
+    $password_hash = password_hash($password,PASSWORD_DEFAULT);
+
+    $query = "INSERT INTO users VALUES ('$kode','$username','$password','$user_role')";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+
 // -- // // panggil file koneksi php
 // -- // require_once('koneksi.php');
 // -- // include_once('templates/header.php');
