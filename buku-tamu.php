@@ -1,6 +1,6 @@
 <?php
 include_once('templates/header.php');
-include_once('function.php')
+include_once('function.php');
 ?>
 
 <!-- Begin Page Content -->
@@ -34,7 +34,7 @@ include_once('function.php')
         <div class="card-header py-3">
             <button type="button" class="btn btn-primary btn-icon-spilt" data-toggle="modal" data-target="#tambahModal">
                 <span class="icon text-white-50">
-                    <i clas="fas fa-plus"></i>
+                    <i class="fas fa-plus"></i>
                 </span>
                 <span class="text">Data Tamu</span>
             </button>
@@ -71,8 +71,9 @@ include_once('function.php')
                                 <td><?= $tamu['no_hp'] ?></td>
                                 <td><?= $tamu['bertemu'] ?></td>
                                 <td><?= $tamu['kepentingan'] ?></td>
-                                <td><button class="btn btn-success" type="button">Ubah</button>
-                                    <button class="btn btn-danger" type="button">Hapus</button></td>
+                                <td><a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu'] ?>">Ubah</a>
+                                    <a onclick="confirm('apakah anda yakin ingin menghapus data ini')" class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu']?>">Hapus</a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -108,7 +109,7 @@ $huruf = "ZT";
 $kodeTamuBaru = $huruf . sprintf("%03s", $urutan);
 
 // Output kode tamu baru
-echo $kodeTamuBaru;
+
 ?>
 
 
