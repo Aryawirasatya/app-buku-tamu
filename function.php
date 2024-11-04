@@ -81,7 +81,7 @@ function tambah_user($data){
     // Enkripsi password dengan password_hash
     $password_hash = password_hash($password,PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO users VALUES ('$kode','$username','$password','$user_role')";
+    $query = "INSERT INTO users VALUES ('$kode','$username','$password_hash','$user_role')";
 
     mysqli_query($koneksi, $query);
 

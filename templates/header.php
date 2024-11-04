@@ -1,10 +1,17 @@
+<?php
+ session_start();
+
+ if (!isset($_SESSION['login'])){
+    header('location: login.php');
+ }
+?>
+<?php
+// include_once('function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<?php
-include_once('function.php');
-?>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +22,7 @@ include_once('function.php');
     <title>ZieBukuTamu</title>
 
     <!-- Custom fonts for this template-->
-    <!-- <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
      <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
 
@@ -49,7 +56,19 @@ include_once('function.php');
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <?php
+            // cek apabila ada user login maka tampilkan logout
+            if(isset($_SESSION['login'])):
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                    <i class="fas fa-fw fa-power-off"></i>
+                    <span>logout</span></a>
+
+            </li>
+            <?php endif;?>
 
             <!-- sidebar - brand  -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">

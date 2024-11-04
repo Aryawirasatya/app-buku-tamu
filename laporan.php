@@ -1,5 +1,7 @@
 <?php
 include_once('templates/header.php');
+include_once('function.php');
+
 ?>
 
 <!-- Begin Page Content -->

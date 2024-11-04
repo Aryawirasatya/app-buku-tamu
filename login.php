@@ -1,4 +1,9 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
+session_start();
 require 'koneksi.php';
 if(isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -13,19 +18,17 @@ if(isset($_POST['login'])) {
         $row = mysqli_fetch_assoc($result);
 
         if(password_verify($password, $row['password'])) {
-
+            $_SESSION['login']= true;
+            $_SESSION['username']= $username;
             // login berhasil
             header("Location: index.php");
             exit;
+
         }
     }
     $error = true;
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -39,7 +42,7 @@ if(isset($_POST['login'])) {
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="assets/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -61,8 +64,8 @@ if(isset($_POST['login'])) {
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
             <div class="col-lg-6 d-none d-lg-block bg-login-image">
@@ -94,11 +97,11 @@ if(isset($_POST['login'])) {
                     <div class="text-center">
                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
             </div>

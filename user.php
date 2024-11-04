@@ -189,7 +189,8 @@ $kodeusers = $huruf . sprintf("%02s", $urutan);
                     <option value="operator">Operator</option>
                 </select>
             </div>
-        </div>        <div class="modal-footer">
+        </div>        
+        <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button> 
             <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
         </div>
@@ -198,16 +199,7 @@ $kodeusers = $huruf . sprintf("%02s", $urutan);
 </div>
 
 
-<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                <button type="submit" name="ganti_password" class="btn btn-primary">Simpan</button>
-            </div>
-                </form>
-        </div>
-    </div>
-</div>
-
-
+ 
 
 
     </div>
