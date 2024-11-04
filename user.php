@@ -1,6 +1,13 @@
 <?php
 include_once('templates/header.php');
 include_once('function.php');
+
+if(($_SESSION['role'])!='admin'){
+    echo"<script>alert('anda tidak memiliki akses')</script>";
+
+    echo"<script>window.location.href='index.php'</script>";
+}
+
 ?>
 
 <!-- Begin Page Content -->

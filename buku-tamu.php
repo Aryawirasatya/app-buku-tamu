@@ -1,7 +1,40 @@
 <?php
+// session_start();
 include_once('templates/header.php');
 include_once('function.php');
+
+// Cek apakah user memiliki role 'admin'. Jika bukan, maka arahkan ke halaman index
+if(($_SESSION['role'])!='operator'){
+    echo"<script>alert('anda tidak memiliki akses')</script>";
+
+    echo"<script>window.location.href='index.php'</script>";
+}
 ?>
+
+<!-- Tampilkan menu untuk role 'operator' -->
+<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'operator') : ?>
+    <li class="nav-item">
+        <a class="nav-link" href="buku-tamu.php">
+            <i class="fas fa-fw fa-book-open"></i>
+            <span>Buku Tamu</span>
+        </a>
+    </li>
+<?php endif; ?>
+
+<!-- Tampilkan menu untuk role 'admin' -->
+<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') : ?>
+    <li class="nav-item">
+        <a class="nav-link" href="users.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>User</span>
+        </a>
+    </li>
+<?php endif; ?>
+
+
+
+
+
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
