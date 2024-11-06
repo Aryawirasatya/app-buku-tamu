@@ -1,0 +1,14 @@
+{
+    "name": "asus/buku-tamu",
+    "description": "aplikasi buku tamu",
+    "authors": [
+        {
+            "name": "arya wirasatya",
+            "email": "aryawirasatya39@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "phpoffice/phpspreadsheet": "^3.3"
+    }
+}

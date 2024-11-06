@@ -15,24 +15,33 @@ function query($query) {
 }
 
 // function tambah data
-function tambah_tamu($data)
-{
-    global $koneksi;
+// function tambah data  
+function tambah_tamu($data)  
+{  
+    global $koneksi;  
 
-    $kode = htmlspecialchars($data["id_tamu"]);
-    $tanggal = date("Y-m-d");
-    $nama_tamu = htmlspecialchars($data["nama_tamu"]);
-    $alamat = htmlspecialchars($data["alamat"]);
-    $no_hp = htmlspecialchars($data["no_hp"]);
-    $bertemu = htmlspecialchars($data["bertemu"]);
-    $kepentingan = htmlspecialchars($data["kepentingan"]);
+    $kode       = htmlspecialchars($data["id_tamu"] ?? '');  
+    $tanggal    = date("Y-m-d");  
+    $nama_tamu  = htmlspecialchars($data["nama_tamu"] ?? '');  
+    $alamat     = htmlspecialchars($data["alamat"] ?? '');  
+    $no_hp      = htmlspecialchars($data["no_hp"] ?? '');  
+    $bertemu    = htmlspecialchars($data["bertemu"] ?? '');  
+    $kepentingan = htmlspecialchars($data["kepentingan"] ?? '');  
 
-    $query = "INSERT INTO buku_tamu VALUES ('$kode', '$tanggal', '$nama_tamu', '$alamat', '$no_hp', '$bertemu', '$kepentingan')";
+    // Upload gambar  
+    $gambar = uploadGambar();  
+    if (!$gambar) {  
+        return false;  
+    }  
 
-    mysqli_query($koneksi, $query);
+    $query = "INSERT INTO buku_tamu (id_tamu, tanggal, nama_tamu, alamat, no_hp, bertemu, kepentingan, gambar) 
+              VALUES ('$kode', '$tanggal', '$nama_tamu', '$alamat', '$no_hp', '$bertemu', '$kepentingan', '$gambar')";  
+    
+    mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));  
 
-    return mysqli_affected_rows($koneksi);
+    return mysqli_affected_rows($koneksi);  
 }
+
 
 function ubah_tamu($data)
 {
@@ -134,6 +143,43 @@ function ganti_password($data) {
     mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
+}
+
+function uploadGambar()  
+{  
+    // Ambil data file gambar dari variabel $_FILES  
+    $namaFile = $_FILES['gambar']['name'] ?? '';  
+    $ukuranFile = $_FILES['gambar']['size'] ?? 0;  
+    $error = $_FILES['gambar']['error'] ?? 4;  
+    $tmpName = $_FILES['gambar']['tmp_name'] ?? '';  
+
+    // Cek apakah tidak ada gambar yang diunggah  
+    if ($error === 4) {  
+        echo "<script>alert('pilih gambar terlebih dahulu!');</script>";  
+        return false;  
+    }  
+
+    // Cek apakah yang diunggah adalah gambar  
+    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];  
+    $ekstensiGambar = explode('.', $namaFile);  
+    $ekstensiGambar = strtolower(end($ekstensiGambar));  
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {  
+        echo "<script>alert('File yang diunggah harus gambar!');</script>";  
+        return false;  
+    }  
+
+    // Cek jika ukurannya terlalu besar  
+    if ($ukuranFile > 1000000) {  
+        echo "<script>alert('Ukuran gambar terlalu besar!');</script>";  
+        return false;  
+    }  
+
+    // Jika lolos pengecekan, gambar akan diunggah  
+    // Generate nama gambar baru dengan uniqid()  
+    $namaFileBaru = uniqid() . '.' . $ekstensiGambar;  
+    move_uploaded_file($tmpName, 'assets/upload_gambar/' . $namaFileBaru);  
+    
+    return $namaFileBaru;  
 }
 
 
